@@ -29,7 +29,7 @@ def main(NAME="music"):
         date_last_retrieved = f.read()
 
     for channel_id in channels_list:
-        latest_videos = json.loads(requests.get(BASE + "search?part=snippet&channelId=" + channel_id + "&publishedAfter=" + date_last_retrieved + "&order=date&type=video&key=" + APP_KEY).text)
+        latest_videos = json.loads(requests.get(BASE + "search?part=snippet&channelId=" + channel_id + "&publishedAfter=" + date_last_retrieved + "&order=date&type=video&maxResults=50&key=" + APP_KEY).text)
 
         if len(latest_videos["items"]) > 0:
             ids_list = ""
