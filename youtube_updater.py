@@ -9,9 +9,9 @@ APP_KEY = "AIzaSyAp1nm1tf-Rz6zzkvnARKz8IEqSYIzqpSs"
 
 def length_in_seconds(duration):
     coefs = [1, 60, 3600]
-    duration_elems = list(reversed(map(int, duration.split(":"))))
+    duration_elems = [int(el) for el in reversed(duration.split(":"))]
     length = 0
-    for i in xrange(len(duration_elems)):
+    for i in range(len(duration_elems)):
         length += duration_elems[i]*coefs[i]
     return length
 
@@ -38,7 +38,7 @@ def main(NAME="music"):
             ids_list = ids_list[:-1]
 
             video_details = json.loads(requests.get(BASE + "videos?id=" + ids_list + "&part=contentDetails&key=" + APP_KEY).text)
-            for i in xrange(len(video_details["items"])):
+            for i in range(len(video_details["items"])):
                 duration = video_details["items"][i]["contentDetails"]["duration"]
                 if 'S' not in duration:
                     duration += '0S'
@@ -99,8 +99,8 @@ def main(NAME="music"):
 
     if not os.path.exists("generated lists"):
         os.makedirs("generated lists")
-    with open("generated lists/" + NAME + "_" + now_filename + ".html", 'w') as f:
-        f.write(html_text.encode('utf-8'))
+    with open("generated lists/" + NAME + "_" + now_filename + ".html", 'w', encoding='utf-8') as f:
+        f.write(html_text)
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
