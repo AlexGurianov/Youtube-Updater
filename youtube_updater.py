@@ -99,8 +99,8 @@ def main(NAME="music"):
 
     if not os.path.exists("generated lists"):
         os.makedirs("generated lists")
-    with open("generated lists/" + NAME + "_" + now_filename + ".html", 'w', encoding='utf-8') as f:
-        f.write(html_text)
+    with open("generated lists/" + NAME + "_" + now_filename + ".html", 'w') as f:
+        f.write(html_text.encode('utf-8'))
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
